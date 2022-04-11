@@ -1,5 +1,6 @@
 import os
 import json
+import numpy as np
 
 # get current working directory path
 cwd_path = os.getcwd()
@@ -31,6 +32,24 @@ def linear_search(unordered_numbers, to_find_number):
     output['count'] = count
     return output
 
+def pattern_search(sequence, pattern):
+    positions = []
+    for index in range(len(sequence)-len(pattern)+1):
+        subsequence = sequence[index:(index+len(pattern))]
+        same = True
+        for letter_subsequence, letter_pattern in zip(subsequence, pattern):
+            if letter_subsequence != letter_pattern:
+                same = False
+                break
+        if same:
+            positions.append(index)
+    return positions
+
+
+
+
+
+
 
 
 def main():
@@ -42,5 +61,6 @@ if __name__ == '__main__':
     search_output_dict = linear_search(unordered_numbers, 5)
     print(unordered_numbers)
     print(search_output_dict)
+    print(pattern_search('ACCCCTG', 'CCC'))
 
     main()
