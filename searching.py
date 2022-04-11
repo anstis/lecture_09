@@ -45,7 +45,18 @@ def pattern_search(sequence, pattern):
             positions.append(index)
     return positions
 
-
+def binary_search(list_of_numbers, number):
+    low = 0
+    high = len(list_of_numbers) - 1
+    mid = 0
+    while low <= high:
+        mid = (high + low) // 2
+        if list_of_numbers[mid] < number:
+            low = mid + 1
+        elif list_of_numbers[mid] > number:
+            high = mid - 1
+        else:
+            return mid
 
 
 
@@ -59,6 +70,8 @@ def main():
 if __name__ == '__main__':
     unordered_numbers = read_data('sequential.json', 'unordered_numbers')
     search_output_dict = linear_search(unordered_numbers, 5)
+    ordered_numbers = [-51, -12, -3, -3, -1, 2, 8, 13, 14, 14, 14, 21, 22, 23, 24, 25, 48, 63, 64, 70, 72, 78, 90, 102, 120]
+    print(binary_search(ordered_numbers, 2))
     print(unordered_numbers)
     print(search_output_dict)
     print(pattern_search('ACCCCTG', 'CCC'))
